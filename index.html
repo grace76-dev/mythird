@@ -1,73 +1,59 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Drive - 내 드라이브</title>
-    <!-- 구글 드라이브 아이콘으로 완벽 위장 -->
-    <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/docs/doclist/images/infinite_drive_favicon_5.ico">
+    <title>Google Docs - 2024 Science Report</title> <!-- 탭 이름을 구글 문서로 위장 -->
+    <link rel="icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
     <style>
-        body { margin: 0; font-family: 'Roboto', sans-serif; background-color: #f7f9fc; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: #5f6368; }
-        .container { text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
-        img { width: 80px; margin-bottom: 20px; }
-        h1 { font-size: 22px; font-weight: 400; margin-bottom: 10px; color: #202124; }
-        p { margin-bottom: 30px; }
-        .btn { background-color: #1a73e8; color: white; border: none; padding: 10px 24px; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-        .btn:hover { background-color: #1765cc; }
+        body { margin: 0; padding: 0; overflow: hidden; background: #f8f9fa; font-family: 'Arial', sans-serif; }
+        #loading { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        .btn { padding: 12px 24px; background: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png" alt="Google Drive">
-        <h1>연결을 확인하는 중...</h1>
-        <p>서버 응답이 지연되고 있습니다. 아래 버튼을 눌러 수동으로 문서를 여세요.</p>
-        <button class="btn" onclick="launchApp()">문서 열기</button>
+    <div id="loading">
+        <img src="https://www.gstatic.com/images/branding/product/2x/docs_2020q4_48dp.png" width="60">
+        <h2 style="color: #5f6368;">Science_Assignment_Final.docx</h2>
+        <p style="color: #70757a;">문서를 불러오는 중 오류가 발생했습니다.</p>
+        <button class="btn" onclick="openInsta()">다시 시도</button>
     </div>
 
     <script>
-        function launchApp() {
-            // [중요!] 여기에 인스타그램을 실제로 보여줄 '엔진' 주소를 넣어야 합니다.
-            // 인스타그램 직접 주소가 아니라, 차단 안 된 프록시 주소를 넣으세요.
-            // 친구가 쓴 주소를 알면 그 주소를 넣는 게 제일 좋습니다.
-            var proxyEngineUrl = "https://instagram.com"; // 임시로 눈팅용 넣어둠
+        function openInsta() {
+            // 1. [중요] 1단계에서 만든 본인의 Vercel 주소를 여기에 넣으세요.
+            // 주의: 주소 뒤에 /main/https://www.instagram.com 을 붙여야 바로 인스타가 뜹니다.
+            var proxyUrl = "https://님의-프로젝트-이름.vercel.app/main/https://www.instagram.com";
 
-            // 1. 고가디언이 추적할 수 없는 '빈 창' 생성
+            // 2. 고가디언 모니터링에 주소가 안 남는 'about:blank' 창 열기
             var win = window.open('about:blank', '_blank');
             if (!win) {
-                alert("팝업 차단을 해제해야 앱이 실행됩니다!");
+                alert("팝업 차단을 해제해야 인스타그램이 열립니다!");
                 return;
             }
 
-            // 2. 새 창의 탭 정보를 '구글 드라이브'로 조작 (클로킹)
+            // 3. 새 창을 구글 문서로 완벽 위장
             var doc = win.document;
-            doc.title = "Google Drive";
+            doc.title = "Google Docs";
             var link = doc.createElement('link');
             link.rel = 'icon';
-            link.href = 'https://ssl.gstatic.com/docs/doclist/images/infinite_drive_favicon_5.ico';
+            link.href = 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico';
             doc.head.appendChild(link);
 
-            // 3. 인스타그램 프록시를 꽉 채운 Iframe 삽입
+            // 4. 진짜 인스타그램을 보여주는 Iframe 삽입
             var iframe = doc.createElement('iframe');
-            iframe.src = proxyEngineUrl;
+            iframe.src = proxyUrl;
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none";
             iframe.style.position = "fixed";
             iframe.style.top = "0";
             iframe.style.left = "0";
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
-            iframe.style.border = "none";
-            iframe.style.backgroundColor = "white";
-
+            
             doc.body.style.margin = "0";
             doc.body.appendChild(iframe);
 
-            // 4. 원래 보고 있던 창은 진짜 구글 드라이브로 이동시켜 증거 인멸
-            window.location.href = "https://drive.google.com";
-
-            // 5. 패닉 키 설정 (Esc 누르면 즉시 창 닫기 - 선택 사항)
-            win.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') win.close();
-            });
+            // 5. 원래 창은 진짜 구글 문서로 이동해서 증거 인멸
+            location.href = "https://docs.google.com";
         }
     </script>
 </body>
