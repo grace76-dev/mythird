@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Math Practice - Algebra 1</title>
+    <title>Google Drive - My Assignments</title> <!-- 탭 이름을 구글 드라이브로 위장 -->
+    <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/infinite_drive_favicon_5.ico"> <!-- 아이콘도 위장 -->
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f0f0f0; }
-        .box { border: 1px solid #ccc; padding: 20px; display: inline-block; background: white; border-radius: 10px; }
-        button { padding: 10px 20px; cursor: pointer; border: none; background: #4285f4; color: white; border-radius: 5px; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #fff; }
+        #fake-content { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; }
+        .btn { padding: 15px 30px; background: #4285f4; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Daily Math Challenge</h2>
-        <p>Solve: 2x + 5 = 15</p>
-        <input type="text" placeholder="Your answer...">
-        <br><br>
-        <!-- 실제 인스타를 여는 버튼 (안 걸리게 구석에 배치하거나 투명하게 만들 수도 있음) -->
-        <button onclick="launchApp()">Check Answer</button>
+
+    <!-- 선생님이 볼 때는 그냥 숙제 사이트처럼 보임 -->
+    <div id="fake-content">
+        <img src="https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png" width="80">
+        <h1>My School Project</h1>
+        <p>Final version - Last edited 2 minutes ago</p>
+        <button class="btn" onclick="launchProxy()">Open Document</button>
     </div>
 
     <script>
-        function launchApp() {
-            // 1. 새 창을 'about:blank'로 엽니다 (고가디언 추적 방지 핵심)
+        function launchProxy() {
+            // 1. 고가디언 추적을 피하기 위해 'about:blank' 창을 생성
             var win = window.open();
             win.document.body.style.margin = '0';
             win.document.body.style.height = '100vh';
 
-            // 2. 탭 제목과 아이콘을 위장합니다 (구글 드라이브 아이콘)
+            // 2. 새 창의 제목과 아이콘을 구글 드라이브로 속임 (이게 핵심!)
             win.document.title = "Google Drive";
             var link = win.document.createElement('link');
             link.rel = 'icon';
             link.href = 'https://ssl.gstatic.com/docs/doclist/images/infinite_drive_favicon_5.ico';
             win.document.head.appendChild(link);
 
-            // 3. 인스타그램을 불러올 프록시 서버 주소를 넣습니다.
-            // 직접 instagram.com은 안 되니, 학교에서 뚫리는 프록시 주소를 찾아야 합니다.
-            // 예: "https://picuki.com" (로그인 없이 눈팅용) 
-            // 또는 개인이 구축한 Ultraviolet 주소
+            // 3. 인스타그램이 잘 돌아가는 프록시 주소를 여기에 넣으세요!
+            // 인스타그램 직접 주소가 아니라, '우회 사이트 주소'를 넣어야 검은 화면이 안 뜹니다.
             var iframe = win.document.createElement('iframe');
             iframe.style.border = 'none';
             iframe.style.width = '100%';
             iframe.style.height = '100%';
             iframe.style.margin = '0';
             
-            // 이 주소 부분이 중요합니다. (아래 2단계 참고)
-            iframe.src = "https://instagram.com"; 
+            // ★ 아래 주소에 1단계에서 찾은 프록시 사이트 주소를 넣으세요.
+            // 예: "https://아직-차단안된-우회사이트.com/main/https://instagram.com"
+            iframe.src = "https://www.picuki.com"; // 임시로 눈팅용 사이트 넣어둠
 
             win.document.body.appendChild(iframe);
+            
+            // 4. 원래 보고 있던 수학 숙제 창은 그대로 둠 (선생님 감시용)
         }
     </script>
 </body>
