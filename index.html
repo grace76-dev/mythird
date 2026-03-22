@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Practice - Algebra 1</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f0f0f0; }
+        .box { border: 1px solid #ccc; padding: 20px; display: inline-block; background: white; border-radius: 10px; }
+        button { padding: 10px 20px; cursor: pointer; border: none; background: #4285f4; color: white; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Daily Math Challenge</h2>
+        <p>Solve: 2x + 5 = 15</p>
+        <input type="text" placeholder="Your answer...">
+        <br><br>
+        <!-- 실제 인스타를 여는 버튼 (안 걸리게 구석에 배치하거나 투명하게 만들 수도 있음) -->
+        <button onclick="launchApp()">Check Answer</button>
+    </div>
+
+    <script>
+        function launchApp() {
+            // 1. 새 창을 'about:blank'로 엽니다 (고가디언 추적 방지 핵심)
+            var win = window.open();
+            win.document.body.style.margin = '0';
+            win.document.body.style.height = '100vh';
+
+            // 2. 탭 제목과 아이콘을 위장합니다 (구글 드라이브 아이콘)
+            win.document.title = "Google Drive";
+            var link = win.document.createElement('link');
+            link.rel = 'icon';
+            link.href = 'https://ssl.gstatic.com/docs/doclist/images/infinite_drive_favicon_5.ico';
+            win.document.head.appendChild(link);
+
+            // 3. 인스타그램을 불러올 프록시 서버 주소를 넣습니다.
+            // 직접 instagram.com은 안 되니, 학교에서 뚫리는 프록시 주소를 찾아야 합니다.
+            // 예: "https://picuki.com" (로그인 없이 눈팅용) 
+            // 또는 개인이 구축한 Ultraviolet 주소
+            var iframe = win.document.createElement('iframe');
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.margin = '0';
+            
+            // 이 주소 부분이 중요합니다. (아래 2단계 참고)
+            iframe.src = "https://www.picuki.com"; 
+
+            win.document.body.appendChild(iframe);
+        }
+    </script>
+</body>
+</html>
