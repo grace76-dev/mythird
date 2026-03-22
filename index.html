@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>Google Docs - 2024 Science Report</title> <!-- 탭 이름을 구글 문서로 위장 -->
+    <meta charset="UTF-8">
+    <title>Google Docs - 과제 제출본</title> <!-- 탭 이름 위장 -->
     <link rel="icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
     <style>
-        body { margin: 0; padding: 0; overflow: hidden; background: #f8f9fa; font-family: 'Arial', sans-serif; }
-        #loading { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        .btn { padding: 12px 24px; background: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
+        body { margin: 0; padding: 0; background: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        .docs-ui { text-align: center; color: #5f6368; }
+        .btn { padding: 12px 24px; background: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
-
-    <div id="loading">
+    <div class="docs-ui">
         <img src="https://www.gstatic.com/images/branding/product/2x/docs_2020q4_48dp.png" width="60">
-        <h2 style="color: #5f6368;">Science_Assignment_Final.docx</h2>
-        <p style="color: #70757a;">문서를 불러오는 중 오류가 발생했습니다.</p>
-        <button class="btn" onclick="openInsta()">다시 시도</button>
+        <h2>2024_과학_보고서_최종.docx</h2>
+        <p>서버 연결 문제로 문서를 미리 볼 수 없습니다.</p>
+        <button class="btn" onclick="openInsta()">문서 강제 로드</button>
     </div>
 
     <script>
         function openInsta() {
-            // 1. [중요] 1단계에서 만든 본인의 Vercel 주소를 여기에 넣으세요.
-            // 주의: 주소 뒤에 /main/https://www.instagram.com 을 붙여야 바로 인스타가 뜹니다.
-            var proxyUrl = "https://님의-프로젝트-이름.vercel.app/main/https://www.instagram.com";
+            // [핵심] 인스타와 똑같은 UI를 보여주는 "무료 프록시 주소"가 필요합니다.
+            // 아래 주소들은 사람들이 무료로 열어둔 프록시 엔진입니다. 
+            // 학교에서 차단 안 된 것을 하나씩 테스트해서 교체해 보세요.
+            var proxyList = [
+                "https://artclass.site/main/",
+                "https://t-800.net/main/",
+                "https://crazymonky.biz/main/",
+                "https://algebra.best/main/"
+            ];
+            
+            // 인스타 주소를 인코딩해서 붙입니다.
+            var target = "https://www.instagram.com";
+            var finalUrl = proxyList[0] + target; // 첫 번째 주소 사용
 
-            // 2. 고가디언 모니터링에 주소가 안 남는 'about:blank' 창 열기
+            // 1. 주소창 감시를 피하기 위한 about:blank 팝업
             var win = window.open('about:blank', '_blank');
-            if (!win) {
-                alert("팝업 차단을 해제해야 인스타그램이 열립니다!");
-                return;
-            }
+            if (!win) return alert("팝업 차단을 해제해 주세요!");
 
-            // 3. 새 창을 구글 문서로 완벽 위장
             var doc = win.document;
-            doc.title = "Google Docs";
+            doc.title = "Google Docs"; // 새 탭 이름도 위장
             var link = doc.createElement('link');
-            link.rel = 'icon';
-            link.href = 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico';
+            link.rel = 'icon'; link.href = 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico';
             doc.head.appendChild(link);
 
-            // 4. 진짜 인스타그램을 보여주는 Iframe 삽입
+            // 2. 100% 똑같은 UI를 보여주는 프록시 실행
             var iframe = doc.createElement('iframe');
-            iframe.src = proxyUrl;
-            iframe.style.width = "100vw";
-            iframe.style.height = "100vh";
-            iframe.style.border = "none";
-            iframe.style.position = "fixed";
-            iframe.style.top = "0";
-            iframe.style.left = "0";
+            iframe.src = finalUrl;
+            iframe.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;border:none;background:#fff;";
             
             doc.body.style.margin = "0";
             doc.body.appendChild(iframe);
 
-            // 5. 원래 창은 진짜 구글 문서로 이동해서 증거 인멸
+            // 3. 현재 탭은 구글 문서로 리다이렉트 (증거 인멸)
             location.href = "https://docs.google.com";
         }
     </script>
